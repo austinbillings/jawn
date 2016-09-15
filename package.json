@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/austinbillings/jawn/issues"
   },
-  "homepage": "https://github.com/austinbillings/jawn#readme"
+  "homepage": "https://github.com/austinbillings/jawn#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
 }
