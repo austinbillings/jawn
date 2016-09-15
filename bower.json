@@ -1,0 +1,28 @@
+{
+  "name": "jawn.js",
+  "main": "jawn.js",
+  "authors": [
+    "Austin Billings <austinjosephbillings@gmail.com>"
+  ],
+  "description": "A collection of tiny, specialized javascript utilities. Need a jawn?",
+  "keywords": [
+    "utility",
+    "tool",
+    "parse",
+    "convert",
+    "paths",
+    "generate"
+  ],
+  "license": "MIT",
+  "homepage": "http://asyla.xyz",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
