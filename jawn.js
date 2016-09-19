@@ -1,8 +1,11 @@
 /*	jawn.js ------------------------------------------------------------------*/
 /*	by austin for free -------------------------------------------------------*/
 /*	license: MIT -------------------------------------------------------------*/
-_ = (typeof require != undefined ? require('underscore') : _);
-
+try {
+	if (typeof require != undefined) {
+		_ = require('underscore');
+	}
+} catch (e) {}
 var jawn = {};
 
 jawn.parseQuery = function (queryString) {
