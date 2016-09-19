@@ -136,7 +136,7 @@ if (typeof exports !== 'undefined') {
     exports = module.exports = jawn;
   }
   exports.jawn = jawn;
-} else {
+} else if (typeof root !== 'undefined') {
   root['jawn'] = jawn;
 }
 /*	kick ass. -- -------------------------------------------------------------*/
