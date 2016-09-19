@@ -2,7 +2,7 @@
 /*	by austin for free -------------------------------------------------------*/
 /*	license: MIT -------------------------------------------------------------*/
 try {
-	if (typeof require != undefined) {
+	if (typeof require != 'undefined') {
 		_ = require('underscore');
 	}
 } catch (e) {}
