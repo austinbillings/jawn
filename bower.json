@@ -1,6 +1,7 @@
 {
   "name": "jawn.js",
   "main": "jawn.js",
+  "version": "1.1.1",
   "authors": [
     "Austin Billings <austinjosephbillings@gmail.com>"
   ],

@@ -6,6 +6,7 @@ try {
 		_ = require('underscore');
 	}
 } catch (e) {}
+
 var jawn = {};
 
 jawn.parseQuery = function (queryString) {
@@ -115,8 +116,9 @@ jawn.bgi = function (image) {
 	return 'url("' + image + '")';
 }
 
-jawn.slug = function (input) {
-	return input ? input.toLowerCase().replace(/-+/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : null;
+jawn.slug = function (input, separator) {
+	if (!separator) separator = '-';
+	return input ? input.toLowerCase().replace(/-+/g, '').replace(/\s+/g, separator).replace(/[^a-z0-9-]/g, '') : null;
 }
 
 jawn.hasImageExt = function (fileName) {
@@ -129,14 +131,24 @@ jawn.wrapDoubleBreaks =  function (x) {
 	return "\n\n" + x + "\n\n";
 }
 
-/*	Export -------------------------------------------------------------------*/
-
-if (typeof exports !== 'undefined') {
-  if (typeof module !== 'undefined' && module.exports) {
-    exports = module.exports = jawn;
-  }
-  exports.jawn = jawn;
-} else if (typeof root !== 'undefined') {
-  root['jawn'] = jawn;
+jawn.ucFirst = function (s) {
+	return s[0].toUpperCase() + s.slice(1);
 }
+
+jawn.lcFirst = function (s) {
+	return s[0].toLowerCase() + s.slice(1);
+}
+
+
+/*	Export -------------------------------------------------------------------*/
+try {
+	if (typeof exports !== 'undefined') {
+	  if (typeof module !== 'undefined' && module.exports) {
+	    exports = module.exports = jawn;
+	  }
+	  exports.jawn = jawn;
+	} else if (typeof root !== 'undefined') {
+	  root['jawn'] = jawn;
+	}
+} catch (e) {}
 /*	kick ass. -- -------------------------------------------------------------*/
