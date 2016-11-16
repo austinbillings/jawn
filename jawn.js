@@ -143,6 +143,15 @@ jawn.isNumeric = function (x) {
 	return !_.isArray(x) && (x - parseFloat(x) + 1) >= 0;
 }
 
+jawn.toCamelCase = function (input) {
+  if (!_.isString(input) || !input.length) return input;
+  var output = input.split(/[\s,_+]+/);
+  output = _.map(output, jawn.ucFirst);
+  output = output.join('');
+  output = jawn.lcFirst(output);
+  return output;
+}
+
 /*	Export -------------------------------------------------------------------*/
 try {
 	if (typeof exports !== 'undefined') {
