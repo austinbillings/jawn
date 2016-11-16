@@ -139,6 +139,9 @@ jawn.lcFirst = function (s) {
 	return s[0].toLowerCase() + s.slice(1);
 }
 
+jawn.isNumeric = function (x) {
+	return !_.isArray(x) && (x - parseFloat(x) + 1) >= 0;
+}
 
 /*	Export -------------------------------------------------------------------*/
 try {
