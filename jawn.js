@@ -143,8 +143,13 @@
 		return !_.isArray(x) && (x - parseFloat(x) + 1) >= 0;
 	}
 
-	jawn.toCamelCase = function (input) {
+	jawn.isUppercase = function (str) {
+	  return (_.isString(str) && str.toUpperCase() === str);
+	}
+
+	jawn.toCamelCase = function (input, overrideAllCaps) {
 	  if (!_.isString(input) || !input.length) return input;
+		if (!overrideAllCaps && jawn.isUppercase(input)) return input;
 		var _prefix = (input.indexOf('_') === 0);
 	  var output = input.split(/[\s,_+]+/);
 	  output = _.map(output, jawn.ucFirst);
@@ -152,6 +157,31 @@
 	  output = jawn.lcFirst(output);
 		output = (_prefix ? '_' : '') + output;
 	  return output;
+	}
+
+	jawn.castNumberTypes = function (x) {
+	  return jawn.isNumeric(x) ? (x * 1) : x;
+	}
+
+	jawn.hath = function (obj, prop) {
+	  if (!_.isObject(obj)) return undefined;
+	  var propList = _.map(prop.split('.'), jawn.castNumberTypes);
+	  while (propList.length) {
+	    if (_.has(obj, propList[0])) {
+	      if (propList.length === 1) return true;
+	      obj = obj[propList.shift()];
+	    } else return false;
+	  }
+	  return false;
+	}
+
+	jawn.extrude = function (obj, targetProp) {
+	  if (!_.isObject(obj) || !jawn.hath(obj, targetProp)) return false;
+	  var targetProps = _.map(targetProp.split('.'), jawn.castNumberTypes);
+	  while (targetProps.length) {
+	    obj = obj[targetProps.shift()];
+	  }
+	  return obj;
 	}
 
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
