@@ -23,6 +23,7 @@ converts plaintext to HTML-- basic at the moment. Converts newline to <br>.
 	--> 'My first paragraph.<br />Seconds Paragraph!'
 ```
 
+-----
 
 #### `jawn.filenameFromPath(path)`
 uses .pathify() to extract the last element from a given path
