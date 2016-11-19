@@ -3,9 +3,10 @@
 
 by Austin for free.
 
+======
 
 #### `jawn.parseQuery(queryString)`
-interprets a standard URL querystring into a usable, typed object.
+Interprets a standard URL `queryString` into a usable, typed object.
 
 ```js
 jawn.parseQuery('?name=Alfred%20Bootin&height=6.05&tickets=false&style=');
@@ -13,14 +14,14 @@ jawn.parseQuery('?name=Alfred%20Bootin&height=6.05&tickets=false&style=');
 --> { name: 'Alfred Bootin', height: 6.05, tickets: false, style: null }
 ```
 
-
+-----
 
 #### `jawn.textToHtml(text)`
-converts plaintext to HTML-- basic at the moment. Converts newline to <br>.
+Converts plaintext `text` to HTML-- quite basic at the moment. Only converts newlines to `<br>` tags.
 
 ```js
-	jawn.textToHtml('My first paragraph.\nSecond Paragraph!');
-	--> 'My first paragraph.<br />Seconds Paragraph!'
+	jawn.textToHtml('My first paragraph. \nSecond Paragraph!');
+	--> 'My first paragraph. <br />Seconds Paragraph!'
 ```
 
 -----
@@ -33,25 +34,37 @@ uses .pathify() to extract the last element from a given path
 	--> 'fancy_shit.png'
 ```
 
+-----
 
 #### `jawn.pathWithoutFilename(path[, force])`
-Returns path, minus the filename, if one exists (i.e. one with a period), with trailing slash.
-If force is a truthy value, it will remove the final path part despite a lack of period.
+Returns `path`, minus the filename, if one exists (i.e. one with a period), always returning with a trailing slash.
+If `force` is a truthy value, it will remove the final path part, regardless of whether or not a period exists.
 
+```js
 	jawn.pathWithoutFilename('/photos/grandma/scary.jpg')
 	--> '/photos/grandma/'
 	jawn.pathWithoutFilename('/dir/certainlyAnotherDir/', false)
 	--> '/dir/possiblyAnotherDir/'
 	jawn.pathWithoutFilename('/dir/possiblyAnotherDir/', true)
 	--> '/dir/'
+```
+
+-----
+
+
 
 #### `jawn.containsPeriod(input)`
-if string contains period rtn true
+If `input` string contains a period, return true.
 
+```js
 	jawn.containsPeriod('file.xml')
 	--> true
 	jawn.containsPeriod('i stole the guitar, though')
 	--> false
+```
+
+-----
+
 
 #### `jawn.getFileExtension(input[, hard])`
 returns just the file extension, unless there is none, in which case the
