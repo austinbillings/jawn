@@ -7,13 +7,16 @@ by austin for free.
 ### `jawn.parseQuery(queryString)`
 interprets a standard URL querystring into a usable, typed object.
 
+```js
 		jawn.parseQuery('?name=Alfred%20Bootin&height=6.05&tickets=false&style=')
-		--> {
+
+    ⊳ {
 			name: 'Alfred Bootin',
 			height: 6.05,
 			tickets: false,
 			style: null
 		}
+```
 
 ### `jawn.textToHtml(text)`
 converts plaintext to HTML-- basic at the moment. Converts newline to <br>.
