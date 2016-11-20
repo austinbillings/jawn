@@ -1,7 +1,8 @@
 # jawn.js
-## A collection of tiny, specialized javascript utilities. Need a jawn?
+## A collection of tiny, specialized javascript utilities. Use that jawn.
 
-by Austin for free.
+Parse and manipulate filepaths and URIs, inspect and extrude objects, alter letter casing, and lots more.
+by Austin, for free.
 
 ======
 
@@ -223,7 +224,7 @@ jawn.isUppercase('Suh dude?')
 jawn.isUppercase('LOL JERK')
 --> true
 jawn.isUppercase('$#$%&#$&')
---> true (is this a defect or non-issue?)
+--> true (is this a defect or non-issue? Need a second opinion yall)
 ```
 
 -----

@@ -1,11 +1,11 @@
 {
   "name": "jawn.js",
   "main": "jawn.js",
-  "version": "1.1.1",
+  "version": "1.1.5",
   "authors": [
     "Austin Billings <austinjosephbillings@gmail.com>"
   ],
-  "description": "A collection of tiny, specialized javascript utilities. Need a jawn?",
+  "description": "A collection of tiny, specialized javascript utilities. Use that jawn.",
   "keywords": [
     "utility",
     "tool",
@@ -15,10 +15,12 @@
     "generate"
   ],
   "license": "MIT",
-  "homepage": "http://asyla.xyz",
+  "homepage": "https://github.com/austinbillings/jawn",
   "ignore": [
     "**/.*",
     "node_modules",
+    "package.json",
+    "README.md",
     "bower_components",
     "test",
     "tests"
