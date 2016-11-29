@@ -318,10 +318,33 @@
 	//	jawn.extrude(deepAF, 'firstLevel.secondLevel.secretPathway')
 	//	--> false
 	jawn.extrude = function (obj, targetProp) {
-	  if (!_.isObject(obj) || !jawn.hath(obj, targetProp)) return false;
+	  if (!_.isObject(obj) || !jawn.hath(obj, targetProp)) return undefined;
 	  var targetProps = _.map(targetProp.split('.'), jawn.castNumberTypes);
 	  while (targetProps.length) obj = obj[targetProps.shift()];
 	  return obj;
+	}
+
+	jawn.reorderKeysByType = function (obj) {
+		if (!_.isObject(obj) || _.isArray(obj) || _.size(obj) <= 1) return obj;
+		var typed = {
+			strings: {},
+			numbers: {},
+			etc: {},
+			objects: {},
+			arrays: {}
+		};
+		_.each (obj, function (item, key) {
+			if (_.isString(item)) typed.strings[key] = item;
+			else if (jawn.isNumeric(item)) typed.numbers[key] = item;
+			else if (_.isObject(item) && !_.isArray(item)) typed.objects[key] = item;
+			else if (_.isArray(item)) typed.arrays[key] = item;
+			else typed.etc[key] = item;
+		});
+		var output = {};
+		_.each (typed, function (props, type) {
+			if (!_.isEmpty(props)) output = _.extend(output, props);
+		});
+		return output;
 	}
 
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
