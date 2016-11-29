@@ -268,7 +268,7 @@
 	  if (!_.isString(input) || !input.length) return input;
 		if (!overrideAllCaps && jawn.isUppercase(input)) return input;
 		var _prefix = (input.indexOf('_') === 0);
-	  var output = input.split(/[\s-,_+]+/);
+	  var output = input.replace(/[^a-zA-Z0-9-\s]/g, ' ').split(/[\s-,_+]+/);
 	  output = _.map(output, jawn.ucFirst);
 	  output = output.join('');
 	  output = jawn.lcFirst(output);
