@@ -143,7 +143,7 @@
 	//		--> 'http://sick-site.com/vids/category/ZAP/vid.swf'
 	jawn.autopath = function () {
 		var pathParts = arguments;
-		output = '';
+		var output = '';
 		_.each(pathParts, function (part, idx) {
 			if (idx === 0 && part.substring(0, 1) === '.' && part.substring(0, 2) === './') {
 				output += './';
