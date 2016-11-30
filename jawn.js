@@ -53,13 +53,25 @@
 		return text.replace('\n', '<br />');
 	}
 
+	// deconstructs a path/url into an array of components
+	// e.g.
+	//		jawn.pathify('C://Windows/System32/Frameworks/Crap/WindowsBlows.lol')
+	//		--> ['C:', 'Windows', 'System32', 'Frameworks', 'Crap', 'WindowsBlows.lol']
+	//		jawn.pathify('/assets/photos/MIKHAIL_prom/GoMishaGo!.jpg')
+	//		--> ['assets', 'photos', 'MIKHAIL_prom', 'GoMishaGo!.jpg']
+	jawn.pathify = function (path) {
+		path = path.substring(0,1) === '/' ? path.substring(1) : path;
+		path = path.substring(-1) === '/' ? path.substring(0, -1) : path;
+		return _.compact(path.split('/'));
+	}
+
 	// uses .pathify() to extract the last element from a given path
 	// e.g.
 	//		jawn.filenameFromPath('/images/wine/merlot/fancy_shit.png')
 	//		--> 'fancy_shit.png'
 	jawn.filenameFromPath = function (path) {
 		var pathParts = jawn.pathify(path);
-		return pathParts[pathParts.length - 1];
+		return (pathParts.length ? pathParts[pathParts.length - 1] : '');
 	}
 
 	// Returns path, minus the filename, if one exists (i.e. one with a period), with trailing slash.
@@ -153,18 +165,6 @@
 			output += part;
 		});
 		return output;
-	}
-
-	// deconstructs a path/url into an array of components
-	// e.g.
-	//		jawn.pathify('C://Windows/System32/Frameworks/Crap/WindowsBlows.lol')
-	//		--> ['C:', 'Windows', 'System32', 'Frameworks', 'Crap', 'WindowsBlows.lol']
-	//		jawn.pathify('/assets/photos/MIKHAIL_prom/GoMishaGo!.jpg')
-	//		--> ['assets', 'photos', 'MIKHAIL_prom', 'GoMishaGo!.jpg']
-	jawn.pathify = function (path) {
-		path = path.substring(0,1) === '/' ? path.substring(1) : path;
-		path = path.substring(-1) === '/' ? path.substring(0, -1) : path;
-		return _.compact(path.split('/'));
 	}
 
 	// generate classes for FontAwesome icons, useful in ng-class
