@@ -71,7 +71,7 @@
 	//		--> 'fancy_shit.png'
 	jawn.filenameFromPath = function (path) {
 		var pathParts = jawn.pathify(path);
-		return (pathParts.length ? pathParts[pathParts.length - 1] : '');
+		return (pathParts.length ? pathParts[pathParts.length - 1] : null);
 	}
 
 	// Returns path, minus the filename, if one exists (i.e. one with a period), with trailing slash.
@@ -87,6 +87,7 @@
 		force = force || false;
 		if (jawn.containsPeriod(path) || force) {
 			var pathParts = jawn.pathify(path);
+			if (!pathParts) return null;
 			pathParts.pop();
 			return pathParts.join('/') + '/';
 		} else {
@@ -141,7 +142,7 @@
 	// 		jawn.autopath('http://sick-site.com', 'vids', 'category/ZAP', '/vid.swf')
 	//		--> 'http://sick-site.com/vids/category/ZAP/vid.swf'
 	jawn.autopath = function () {
-		pathParts = arguments;
+		var pathParts = arguments;
 		output = '';
 		_.each(pathParts, function (part, idx) {
 			if (idx === 0 && part.substring(0, 1) === '.' && part.substring(0, 2) === './') {
