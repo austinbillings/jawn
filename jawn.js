@@ -319,10 +319,19 @@
 	//	jawn.extrude(deepAF, 'firstLevel.secondLevel.secretPathway')
 	//	--> false
 	jawn.extrude = function (obj, targetProp) {
-	  if (!_.isObject(obj) || !jawn.hath(obj, targetProp)) return undefined;
+	  if (!_.isObject(obj) || !jawn.hath(obj, targetProp)) return null;
 	  var targetProps = _.map(targetProp.split('.'), jawn.castNumberTypes);
 	  while (targetProps.length) obj = obj[targetProps.shift()];
 	  return obj;
+	}
+
+	jawn.intrude = function (obj, targetProp, replacement) {
+		if (!_.isObject(obj) || !jawn.hath(obj, targetProp)) return null;
+		var propTrail = _.reduce(targetProp.split('.'), function (out, prop) {
+			return out + '[' + (jawn.isNumeric(prop) ? prop : '\'' + prop + '\'') + ']';
+		}, '');
+		eval('obj' + propTrail + ' = replacement;');
+		return obj;
 	}
 
 	jawn.reorderKeysByType = function (obj) {
