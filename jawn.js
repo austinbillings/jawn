@@ -6,6 +6,8 @@
 
 	if (typeof window === 'undefined') {
 		var _ = require('underscore');
+	} else {
+		_ = window._;
 	}
 
 
