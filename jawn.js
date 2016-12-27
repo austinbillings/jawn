@@ -125,7 +125,7 @@
 	//		jawn.removeFileExtension('InedibleNachos.png')
 	//		-->	'InedibleNachos'
 	jawn.removeFileExtension = function (input, hard) {
-		return jawn.containsPeriod(input) ? input.substring(0, input.indexOf('.')) : hard ? false : input;
+		return jawn.containsPeriod(input) ? input.substring(0, input.lastIndexOf('.')) : hard ? false : input;
 	}
 
 	// insert addendum onto filename before file extension

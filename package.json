@@ -1,6 +1,6 @@
 {
   "name": "node-jawn",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A collection of tiny, specialized javascript utilities. Use that jawn.",
   "main": "jawn.js",
   "scripts": {
