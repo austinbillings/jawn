@@ -1,6 +1,6 @@
 {
   "name": "node-jawn",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A collection of tiny, specialized javascript utilities. Use that jawn.",
   "main": "jawn.js",
   "scripts": {
@@ -27,5 +27,8 @@
   "homepage": "https://github.com/austinbillings/jawn#readme",
   "dependencies": {
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "zaq": "^1.0.3"
   }
 }

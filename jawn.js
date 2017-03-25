@@ -1,6 +1,12 @@
-/*	jawn.js ------------------------------------------------------------------*/
-/*	by austin for free -------------------------------------------------------*/
-/*	license: MIT -------------------------------------------------------------*/
+/* ---------------------------------------------------------------------------*/
+/*	@module jawn -------------------------------------------------------------*/
+/*	@author austinbillings ---------------------------------------------------*/
+/*	@license: MIT ------------------------------------------------------------*/
+/* ---------------------------------------------------------------------------*/
+
+/*	TODO: ES6 Conversion w/ babel build */
+/*	TODO: Unit testing */
+
 (function () {
 	"use strict";
 
@@ -10,9 +16,8 @@
 		_ = window._;
 	}
 
-
 	// Let's do this y'all.
-	var jawn = {};
+	var jawn = { version: '1.2.2' };
 
 	// interprets a standard URL querystring into a usable, typed object.
 	// e.g.
@@ -191,6 +196,12 @@
 		var s = 'url("' + image + '")';
 		return !objMode ? s : (camelCase ? { backgroundImage: s } : { 'background-image': s });
 	}
+	
+	// TODO: add docs for .rgba
+	jawn.rgb = jawn.rgba = function (red, green, blue, alpha) {
+		alpha = (!jawn.isNumeric(alpha) ? 1 : alpha);
+		return 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + alpha + ')';
+	}
 
 	// generates a URL-friendly slug for input, retaining alphanumeric characters
 	// and replacing spaces with separator, '-' by default.
@@ -334,6 +345,25 @@
 		}, '');
 		eval('obj' + propTrail + ' = replacement;');
 		return obj;
+	}
+	
+	jawn.clone = function (obj) {
+		let primitives = ['number', 'boolean', 'string'];
+		
+		if (_.contains(primitives, typeof obj) || !obj) 
+			return obj;
+		if (_.isArray(obj)) 
+			return _.map(obj, function (item) { return jawn.clone(item); });
+		if (!_.isObject(obj) || !_.size(obj)) 
+			return obj;
+		if (typeof obj === 'function') 
+			return obj.bind({});
+		
+		let output = Object.create(obj);
+		_.keys(obj).forEach(function (key) {
+			output[key] = jawn.clone(obj[key]);
+		});
+		return output;
 	}
 
 	jawn.reorderKeysByType = function (obj) {
