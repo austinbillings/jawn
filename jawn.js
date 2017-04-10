@@ -17,7 +17,7 @@
 	}
 
 	// Let's do this y'all.
-	var jawn = { version: '1.2.2' };
+	var jawn = { version: '1.3.0' };
 
 	// interprets a standard URL querystring into a usable, typed object.
 	// e.g.
@@ -37,7 +37,7 @@
 		_.each(queryArray, function (set) {
 			x = set.split('=');
 			key = x[0];
-			val = (x[1] != null ? x[1] : null);
+			val = (x[1] !== undefined && x[1] !== null ? x[1] : null);
 
 			if (val === '') { val = null; }
 			else if (val === 'true') { val = true; }
@@ -50,7 +50,7 @@
 			}
 		});
 		return output;
-	}
+	};
 
 	// converts plaintext to HTML-- basic at the moment. Converts newline to <br>.
 	// e.g.
@@ -58,7 +58,7 @@
 	//	--> 'My first paragraph.<br />Seconds Paragraph!'
 	jawn.textToHtml = function (text) {
 		return text.replace('\n', '<br />');
-	}
+	};
 
 	// deconstructs a path/url into an array of components
 	// e.g.
@@ -70,7 +70,7 @@
 		path = path.substring(0,1) === '/' ? path.substring(1) : path;
 		path = path.substring(-1) === '/' ? path.substring(0, -1) : path;
 		return _.compact(path.split('/'));
-	}
+	};
 
 	// uses .pathify() to extract the last element from a given path
 	// e.g.
@@ -79,7 +79,7 @@
 	jawn.filenameFromPath = function (path) {
 		var pathParts = jawn.pathify(path);
 		return (pathParts.length ? pathParts[pathParts.length - 1] : null);
-	}
+	};
 
 	// Returns path, minus the filename, if one exists (i.e. one with a period), with trailing slash.
 	// If force is a truthy value, it will remove the final path part despite a lack of period.
@@ -100,7 +100,7 @@
 		} else {
 			return path;
 		}
-	}
+	};
 
 	// if string contains period rtn true
 	// e.g.
@@ -110,7 +110,7 @@
 	//		--> false
 	jawn.containsPeriod = function (input) {
 		return input && input.length && input.indexOf('.') !== -1;
-	}
+	};
 
 	// returns just the file extension, unless there is none, in which case the
 	// input is returned, unless `hard` is a truthy value, in which case false is.
@@ -123,7 +123,7 @@
 	//		--> false
 	jawn.getFileExtension = function (input, hard) {
 		return jawn.containsPeriod(input) ? input.substring(input.lastIndexOf('.') + 1) : hard ? false : input;
-	}
+	};
 
 	// returns everything up to file extension
 	// e.g.
@@ -131,7 +131,7 @@
 	//		-->	'InedibleNachos'
 	jawn.removeFileExtension = function (input, hard) {
 		return jawn.containsPeriod(input) ? input.substring(0, input.lastIndexOf('.')) : hard ? false : input;
-	}
+	};
 
 	// insert addendum onto filename before file extension
 	// e.g.
@@ -141,7 +141,7 @@
 		var pre = jawn.removeFileExtension(filename);
 		var post = jawn.getFileExtension(filename);
 		return pre + addendum + '.' + post;
-	}
+	};
 
 	// pass various values/dirnames to automatically build a path/url from them
 	// intelligently handles URLs, and dotpath prefixes, never with trailing slash
@@ -173,7 +173,7 @@
 			output += part;
 		});
 		return output;
-	}
+	};
 
 	// generate classes for FontAwesome icons, useful in ng-class
 	// e.g.
@@ -182,7 +182,7 @@
 	jawn.fa = function (icon) {
 		if (!icon || !_.isString(icon)) return null;
 		return 'fa fa-' + icon;
-	}
+	};
 
 	// generates background-image css image string. also can generate object
 	// with either camelCase or hephen-style property name, useful in <ng-style>
@@ -195,13 +195,13 @@
 		if (!image) return null;
 		var s = 'url("' + image + '")';
 		return !objMode ? s : (camelCase ? { backgroundImage: s } : { 'background-image': s });
-	}
+	};
 	
 	// TODO: add docs for .rgba
 	jawn.rgb = jawn.rgba = function (red, green, blue, alpha) {
 		alpha = (!jawn.isNumeric(alpha) ? 1 : alpha);
 		return 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + alpha + ')';
-	}
+	};
 
 	// generates a URL-friendly slug for input, retaining alphanumeric characters
 	// and replacing spaces with separator, '-' by default.
@@ -213,7 +213,7 @@
 	jawn.slug = function (input, separator) {
 		if (!separator) separator = '-';
 		return input ? input.toLowerCase().replace(/-'+/g, '').replace(/\s+/g, separator).replace(/[^a-z0-9-]/g, '') : null;
-	}
+	};
 
 	// checks if fileName has a common image file extension (listed below)
 	// e.g.
@@ -223,7 +223,7 @@
 		return _.some(['jpg','png','svg','jpeg','gif','bmp'], function (t) {
 			return fileName.lastIndexOf('.' + t) === fileName.length - (t.length + 1);
 		});
-	}
+	};
 
 	// Wraps x in two escaped newlines. Useful for spacing out console.log() statements.
 	// e.g.
@@ -231,7 +231,7 @@
 	//	--> '\n\nWTF BRO\n\n
 	jawn.wrapDoubleBreaks =  function (x) {
 		return "\n\n" + x + "\n\n";
-	}
+	};
 
 	// uppercase the first letter
 	// e.g.
@@ -239,7 +239,7 @@
 	//	--> 'Lowercase'
 	jawn.ucFirst = function (s) {
 		return (s && _.isString(s) && s.length ? s[0].toUpperCase() + s.slice(1) : s);
-	}
+	};
 
 	// lowercase the first letter
 	// e.g.
@@ -247,7 +247,7 @@
 	//	--> 'uppercase'
 	jawn.lcFirst = function (s) {
 		return (s && _.isString(s) && s.length ? s[0].toLowerCase() + s.slice(1) : s);
-	}
+	};
 
 	// simple check for number-ness
 	// e.g.
@@ -257,7 +257,7 @@
 	//	--> false, man y'all triflin that ain't even close to a number dawg
 	jawn.isNumeric = function (x) {
 		return !_.isArray(x) && (x - parseFloat(x) + 1) >= 0;
-	}
+	};
 
 	// simple check for ALL CAPS-NESS (actually for lack of lowercase-ness)
 	//	jawn.isUppercase('Suh dude?')
@@ -268,7 +268,43 @@
 	//	--> true (is this a defect or non-issue?)
 	jawn.isUppercase = function (str) {
 	  return (_.isString(str) && str.length && str.toUpperCase() === str);
-	}
+	};
+
+	// simple check if an object is a "map", i.e., a plain object with properties (not ES6 Map type)
+	jawn.isMap = function (x) {
+		return _.isObject(x) && !_.isArray(x) && !_.isFunction(x);
+	};
+	
+	
+	// deeply "merges" two objects, preferring property values of the second over the first,
+	// ignoring undefined values and optionally merging arrays
+	jawn.merge = jawn.mergeObjects = function (_base, _coat, mergeArrays) {
+    if (!jawn.isMap(_base) || !jawn.isMap(_coat)) return;
+    
+    var output = {};
+    var base = jawn.clone(_base);
+    var coat = jawn.clone(_coat);
+    var allKeys = _.flatten([ _.keys(base), _.keys(coat) ]);
+    
+    _.each(allKeys, function (key) {
+      var incoming = coat[key];
+      var incumbent = base[key];
+      
+      if (_.isUndefined(incoming) && _.isUndefined(incumbent)) return;
+      
+      if (jawn.isMap(incoming) && jawn.isMap(incumbent)) {
+        output[key] = jawn.mergeObjects(incumbent, incoming);
+      } else {
+				if (_.isArray(incoming) && _.isArray(incumbent) && mergeArrays) {
+					output[key] = _.union(incumbent, incoming);
+				} else {
+        	output[key] = _.isUndefined(incoming) ? incumbent : incoming;
+				}
+      }
+    });
+		
+    return output;
+  };
 
 	// converts a value to camelCase, splitting by spaces, commas, and underscores
 	// Leaves ALLCAPS untouched unless overrideAllCaps is truthy.
@@ -288,7 +324,7 @@
 	  output = jawn.lcFirst(output);
 		output = (_prefix ? '_' : '') + output;
 	  return output;
-	}
+	};
 
 	// If a value is numeric, turn it into a number of the appropriate type
 	// e.g.
@@ -298,7 +334,7 @@
 	//	--> 103434.4040 (float)
 	jawn.castNumberTypes = function (x) {
 	  return jawn.isNumeric(x) ? (x * 1) : x;
-	}
+	};
 
 	// Deep checks if nested period-separated properties (prop) exist on obj
 	// like Underscore's _.has(obj, propertyName) but can go many levels deep.
@@ -321,7 +357,7 @@
 	    } else return false;
 	  }
 	  return false;
-	}
+	};
 
 	// Returns the value of targetProp (a period-separated property path)
 	// from deep within obj, if it exists. Otherwise, false.
@@ -336,7 +372,7 @@
 	  var targetProps = _.map(targetProp.split('.'), jawn.castNumberTypes);
 	  while (targetProps.length) obj = obj[targetProps.shift()];
 	  return obj;
-	}
+	};
 
 	jawn.intrude = function (obj, targetProp, replacement) {
 		if (!_.isObject(obj) || !jawn.hath(obj, targetProp)) return null;
@@ -345,10 +381,10 @@
 		}, '');
 		eval('obj' + propTrail + ' = replacement;');
 		return obj;
-	}
+	};
 	
 	jawn.clone = function (obj) {
-		let primitives = ['number', 'boolean', 'string'];
+		var primitives = ['number', 'boolean', 'string'];
 		
 		if (_.contains(primitives, typeof obj) || !obj) 
 			return obj;
@@ -359,12 +395,12 @@
 		if (typeof obj === 'function') 
 			return obj.bind({});
 		
-		let output = Object.create(obj);
+		var output = Object.create(obj);
 		_.keys(obj).forEach(function (key) {
 			output[key] = jawn.clone(obj[key]);
 		});
 		return output;
-	}
+	};
 
 	jawn.reorderKeysByType = function (obj) {
 		if (!_.isObject(obj) || _.isArray(obj) || _.size(obj) <= 1) return obj;
@@ -387,7 +423,7 @@
 			if (!_.isEmpty(props)) output = _.extend(output, props);
 		});
 		return output;
-	}
+	};
 
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 	  module.exports = jawn;

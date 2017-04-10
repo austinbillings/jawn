@@ -1,9 +1,8 @@
 {
   "name": "jawn",
   "main": "jawn.js",
-  "version": "1.2.1",
   "authors": [
-    "Austin Billings <austinjosephbillings@gmail.com>"
+    "Austin Billings <ab@austinbillings.com>"
   ],
   "description": "A collection of tiny, specialized javascript utilities. Use that jawn.",
   "keywords": [

@@ -1,25 +1,17 @@
 {
   "name": "node-jawn",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "A collection of tiny, specialized javascript utilities. Use that jawn.",
   "main": "jawn.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "uglifyjs jawn.js -o jawn.min.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/austinbillings/jawn.git"
   },
-  "keywords": [
-    "utility",
-    "tool",
-    "parse",
-    "convert",
-    "paths",
-    "path",
-    "generate"
-  ],
-  "author": "Austin Billings <austinjosephbillings@gmail.com>",
+  "keywords": [ "utility", "tool", "parse", "convert", "paths", "path", "generate" ],
+  "author": "Austin Billings <ab@austinbillings.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/austinbillings/jawn/issues"
@@ -29,6 +21,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "uglifyjs": "^2.4.10",
     "zaq": "^1.0.3"
   }
 }
