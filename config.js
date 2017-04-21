@@ -3,5 +3,5 @@ module.exports = {
   list: [
     'src/**/*.js'
   ],
-  outputDir: '/dist'
+  outputDir: __dirname + '/dist'
 }

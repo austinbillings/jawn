@@ -12,7 +12,7 @@ Interprets a standard URL `queryString` into a usable, typed object.
 ```js
 jawn.parseQuery('?name=Alfred%20Bootin&height=6.05&tickets=false&style=');
 
---> { name: 'Alfred Bootin', height: 6.05, tickets: false, style: null }
+//--> { name: 'Alfred Bootin', height: 6.05, tickets: false, style: null }
 ```
 
 -----
@@ -22,7 +22,7 @@ Converts plaintext `text` to HTML-- quite basic at the moment. Only converts new
 
 ```js
 jawn.textToHtml('My first paragraph. \nSecond Paragraph!');
---> 'My first paragraph. <br />Seconds Paragraph!'
+//--> 'My first paragraph. <br />Seconds Paragraph!'
 ```
 
 -----
@@ -32,7 +32,7 @@ uses `.pathify()` to extract the last element from a given path
 
 ```js
 jawn.filenameFromPath('/images/wine/merlot/fancy_shit.png');
---> 'fancy_shit.png'
+//--> 'fancy_shit.png'
 ```
 
 -----
@@ -43,11 +43,11 @@ If `force` is a truthy value, it will remove the final path part, regardless of 
 
 ```js
 jawn.pathWithoutFilename('/photos/grandma/scary.jpg')
---> '/photos/grandma/'
+//--> '/photos/grandma/'
 jawn.pathWithoutFilename('/dir/certainlyAnotherDir/', false)
---> '/dir/possiblyAnotherDir/'
+//--> '/dir/possiblyAnotherDir/'
 jawn.pathWithoutFilename('/dir/possiblyAnotherDir/', true)
---> '/dir/'
+//--> '/dir/'
 ```
 
 -----
@@ -59,9 +59,9 @@ If `input` string contains a period, return true.
 
 ```js
 jawn.containsPeriod('file.xml')
---> true
+//--> true
 jawn.containsPeriod('i stole the guitar, though')
---> false
+//--> false
 ```
 
 -----
@@ -73,11 +73,11 @@ input is returned, unless `hard` is a truthy value, in which case false is.
 
 ```js
 jawn.getFileExtension('seasonsChange.svg')
---> 'svg'
+//--> 'svg'
 jawn.getFileExtension('WTF_broooooo?')
---> 'WTF_broooooo?'
+//--> 'WTF_broooooo?'
 jawn.getFileExtension('stoic', true)
---> false
+//--> false
 ```
 
 -----
@@ -88,7 +88,7 @@ Returns all of `input`, up to the final file extension. If no file extension is 
 
 ```js
 jawn.removeFileExtension('InedibleNachos.png')
--->	'InedibleNachos'
+//-->	'InedibleNachos'
 ```
 
 -----
@@ -98,7 +98,7 @@ Insert `addendum` onto `filename`, before the file extension.
 
 ```js
 jawn.appendToFilename('photos/mom/gotNOteeth.jpg', '-edited')
--->	'photos/mom/gotNOteeth-edited.jpg'
+//-->	'photos/mom/gotNOteeth-edited.jpg'
 ```
 
 -----
@@ -109,7 +109,7 @@ Intelligently handles URLs, and dotpath prefixes. Never returns with a trailing 
 
 ```js
 jawn.autopath('http://sick-site.com', 'vids', 'category/ZAP', '/vid.swf')
---> 'http://sick-site.com/vids/category/ZAP/vid.swf'
+//--> 'http://sick-site.com/vids/category/ZAP/vid.swf'
 ```
 
 -----
@@ -120,9 +120,9 @@ Deconstructs a `path` (URLs okay) into an array of segments.
 
 ```js
 jawn.pathify('C://Windows/System32/Frameworks/Crap/WindowsBlows.lol')
---> ['C:', 'Windows', 'System32', 'Frameworks', 'Crap', 'WindowsBlows.lol']
+//--> ['C:', 'Windows', 'System32', 'Frameworks', 'Crap', 'WindowsBlows.lol']
 jawn.pathify('/assets/photos/MIKHAIL_prom/GoMishaGo!.jpg')
---> ['assets', 'photos', 'MIKHAIL_prom', 'GoMishaGo!.jpg']
+//--> ['assets', 'photos', 'MIKHAIL_prom', 'GoMishaGo!.jpg']
 ```
 
 -----
@@ -133,7 +133,7 @@ Generate the classes for a FontAwesome `icon`, useful in `ng-class`.
 
 ```js
 jawn.fa('home')
---> 'fa fa-home'
+//--> 'fa fa-home'
 ```
 
 -----
@@ -145,9 +145,9 @@ with either (if `camelCase` is truthy) or hyphen-style property name. Useful in 
 
 ```js
 jawn.bgi('assets/bg.jpg')
---> 'url("assets/bg.jpg")'
+//--> 'url("assets/bg.jpg")'
 jawn.bgi('img/wall.png', true, true)
---> { backgroundImage: 'url("img/wall.png")' }
+//--> { backgroundImage: 'url("img/wall.png")' }
 ```
 
 -----
@@ -159,9 +159,9 @@ and replacing spaces with separator, '-' by default.
 
 ```js
 jawn.slug('My SUPER cool new WEBSITE!!! Yay~')
---> 'my-super-cool-new-website-yay'
+//--> 'my-super-cool-new-website-yay'
 jawn.slug("this one's different", '~')
---> 'this~ones~different'
+//--> 'this~ones~different'
 ```
 
 -----
@@ -171,7 +171,7 @@ checks if fileName has a common image file extension (listed below)
 
 ```js
 jawn.hasImageExt('files/deep/folder/test.jpg')
---> true
+//--> true
 ```
 
 #### `jawn.wrapDoubleBreaks(x)`
@@ -179,7 +179,7 @@ Wraps x in two escaped newlines. Useful for spacing out console.log() statements
 
 ```js
 jawn.wrapDoubleBreaks('WTF BRO')
---> "\n\n WTF BRO \n\n"
+//--> "\n\n WTF BRO \n\n"
 ```
 
 
@@ -188,7 +188,7 @@ Uppercase the first letter of a string.
 
 ```js
 jawn.ucFirst('lowercase')
---> 'Lowercase'
+//--> 'Lowercase'
 ```
 
 -----
@@ -199,7 +199,7 @@ Lowercase the first letter of a string.
 
 ```js
 jawn.lcFirst('Uppercase')
---> 'uppercase'
+//--> 'uppercase'
 ```
 -----
 
@@ -209,9 +209,9 @@ Simple check for number-ness.
 
 ```js
 jawn.isNumeric('15.4')
---> true
+//--> true
 jawn.isNumeric('Unoriginal Antiques')
---> false, man y'all triflin that ain't even close to a number dawg
+//--> false, man y'all triflin that ain't even close to a number dawg
 ```
 
 
@@ -220,11 +220,11 @@ Simple check for ALL CAPS-NESS (actually for lack of lowercase-ness).
 
 ```js
 jawn.isUppercase('Suh dude?')
---> false
+//--> false
 jawn.isUppercase('LOL JERK')
---> true
+//--> true
 jawn.isUppercase('$#$%&#$&')
---> true (is this a defect or non-issue? Need a second opinion yall)
+//--> true (is this a defect or non-issue? Need a second opinion yall)
 ```
 
 -----
@@ -237,9 +237,9 @@ Retains initial underscore ( _ ) if present, and lowercases the first letter.
 
 ```js
 jawn.toCamelCase('My_Cool_Var_Name')
---> 'myCoolVarName'
+//--> 'myCoolVarName'
 jawn.toCamelCase('leave-me-alone, bob')
---> 'leaveMeAloneBob'
+//--> 'leaveMeAloneBob'
 ```
 
 -----
@@ -250,9 +250,9 @@ If a value is numeric, turn it into a number of the appropriate type.
 
 ```js
 jawn.castNumberTypes('4')
---> 4 (int)
+//--> 4 (int)
 jawn.castNumberTypes('103434.4040')
---> 103434.4040 (float)
+//--> 103434.4040 (float)
 ```
 
 -----
@@ -266,11 +266,11 @@ Accepts integer values to search for array indices as well.
 ```js
 var deep = { firstLevel: { secondLevel: { thirdLevel: ["Limbo"] } } }
 jawn.hath(deep, 'firstLevel.secondLevel.thirdLevel')
---> true
+//--> true
 jawn.hath(deep, 'firstLevel.secondLevel.thirdLevel.Limbo')
---> false (it's an array item of thirdLevel)
+//--> false (it's an array item of thirdLevel)
 jawn.hath(deep, 'firstLevel.secondLevel.thirdLevel.0')
---> true (it's the 0 index)
+//--> true (it's the 0 index)
 ```
 
 -----
@@ -282,7 +282,7 @@ from deep within `obj`, if it exists. Otherwise, `false`.
 ```js
 var deepAF = { firstLevel: { secondLevel: { thirdLevel: { treasure: true } } } }
 jawn.extrude(deepAF, 'firstLevel.secondLevel.thirdLevel')
---> { treasure: true }
+//--> { treasure: true }
 jawn.extrude(deepAF, 'firstLevel.secondLevel.secretPathway')
---> false
+//--> false
 ```
