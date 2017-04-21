@@ -4,13 +4,22 @@
   "description": "A collection of tiny, specialized javascript utilities. Use that jawn.",
   "main": "jawn.js",
   "scripts": {
-    "build": "uglifyjs jawn.js -o jawn.min.js"
+    "build": "gulp build",
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/austinbillings/jawn.git"
   },
-  "keywords": [ "utility", "tool", "parse", "convert", "paths", "path", "generate" ],
+  "keywords": [
+    "utility",
+    "tool",
+    "parse",
+    "convert",
+    "paths",
+    "path",
+    "generate"
+  ],
   "author": "Austin Billings <ab@austinbillings.com>",
   "license": "MIT",
   "bugs": {
@@ -21,7 +30,11 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "uglifyjs": "^2.4.10",
-    "zaq": "^1.0.3"
+    "babel-preset-env": "^1.4.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.1.2",
+    "zaq": "^1.1.5"
   }
 }
