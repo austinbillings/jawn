@@ -4,7 +4,7 @@
 Parse and manipulate filepaths and URIs, inspect and extrude objects, alter letter casing, and lots more.
 by Austin, for free.
 
-======
+-----
 
 #### `jawn.parseQuery(queryString)`
 Interprets a standard URL `queryString` into a usable, typed object.
