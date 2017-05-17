@@ -14,7 +14,7 @@
 	const jawn = {
 		version: '2.0.0',
 		primitives: ['number', 'boolean', 'string'],
-		imageTypes: ['jpg', 'png', 'svg', 'jpeg', 'gif', 'bmp']
+		imageTypes: ['jpg', 'png', 'svg', 'jpeg', 'gif', 'bmp', 'tif']
 	};
 
 	jawn.parseQuery = (queryString = '') => {

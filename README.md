@@ -167,12 +167,25 @@ jawn.slug("this one's different", '~')
 -----
 
 #### `jawn.hasImageExt(fileName)`
-checks if fileName has a common image file extension (listed below)
+Checks if `fileName` has a common image file extension (case-insensitive).
 
 ```js
 jawn.hasImageExt('files/deep/folder/test.jpg')
 //--> true
 ```
+The following extensions are checked by default:
+- `jpg` or `jpeg`
+- `png`
+- `svg`
+- `gif`
+- `bmp`
+- `tif`
+
+If you need to add to this list, it can be accessed as `jawn.imageTypes`:
+```js
+  jawn.imageTypes.push('xyz')
+```
+This adds 'xyz' as an image type, for example.
 
 #### `jawn.wrapDoubleBreaks(x)`
 Wraps x in two escaped newlines. Useful for spacing out console.log() statements.
