@@ -20,7 +20,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 	var jawn = {
 		version: '2.0.0',
 		primitives: ['number', 'boolean', 'string'],
-		imageTypes: ['jpg', 'png', 'svg', 'jpeg', 'gif', 'bmp']
+		imageTypes: ['jpg', 'png', 'svg', 'jpeg', 'gif', 'bmp', 'tif']
 	};
 
 	jawn.parseQuery = function () {
@@ -279,7 +279,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 	};
 
 	jawn.clone = function (obj) {
-		if (_.contains(jawn.primitives, typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) || !obj) return obj;
+		if (jawn.primitives.indexOf(typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) >= 0 || !obj) return obj;
 		if (_.isArray(obj)) return _.map(obj, function (item) {
 			return jawn.clone(item);
 		});

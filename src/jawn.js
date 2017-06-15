@@ -12,7 +12,7 @@
 	else _ = window._;
 	
 	const jawn = {
-		version: '2.0.0',
+		version: '2.0.1',
 		primitives: ['number', 'boolean', 'string'],
 		imageTypes: ['jpg', 'png', 'svg', 'jpeg', 'gif', 'bmp', 'tif']
 	};
@@ -220,7 +220,7 @@
 	};
 	
 	jawn.clone = (obj) => {
-		if (_.contains(jawn.primitives, typeof obj) || !obj) return obj;
+		if (jawn.primitives.indexOf(typeof obj) >= 0 || !obj) return obj;
 		if (_.isArray(obj)) return _.map(obj, function (item) { return jawn.clone(item); });
 		if (!_.isObject(obj) || !_.size(obj)) return obj;
 		if (typeof obj === 'function') return obj.bind({});

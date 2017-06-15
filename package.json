@@ -1,6 +1,6 @@
 {
   "name": "node-jawn",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A collection of tiny, specialized javascript utilities. Use that jawn.",
   "main": "dist/jawn.js",
   "jshintConfig": {
