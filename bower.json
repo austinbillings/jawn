@@ -1,6 +1,6 @@
 {
   "name": "jawn",
-  "main": "jawn.js",
+  "main": "dist/jawn.js",
   "authors": [
     "Austin Billings <ab@austinbillings.com>"
   ],
